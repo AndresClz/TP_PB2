@@ -1,0 +1,62 @@
+# ===================================
+# Java: compilados y temporales
+# ===================================
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+
+# Archivos generados por compiladores
+/bin/
+/target/
+/out/
+
+# ===================================
+# Eclipse
+# ===================================
+.project
+.classpath
+.settings/
+.loadpath
+
+# ===================================
+# IntelliJ IDEA
+# ===================================
+.idea/
+*.iws
+*.ipr
+*.iml
+
+# Carpetas de build o configuración
+/.gradle
+/build/
+.gradle/
+
+# ===================================
+# Sistema operativo
+# ===================================
+.DS_Store
+Thumbs.db
+
+# ===================================
+# Logs y dumps
+# ===================================
+*.log
+*.hprof
+
+# ===================================
+# Otros (opcional)
+# ===================================
+# Si usás Maven:
+#mvnw
+#mvnw.cmd
+#.mvn/
+
+# Si usás Gradle:
+#gradlew
+#gradlew.bat
+
+# Si usás dependencias descargadas localmente (ej. libs externos)
+#lib/
