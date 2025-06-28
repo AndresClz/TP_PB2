@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Zona {
-    private String nombre;
-    private List<Profugo> profugos;
+    private final String nombre;
+    private final List<Profugo> profugos;
 
     public Zona(String nombre) {
         this.nombre = nombre;
