@@ -16,9 +16,9 @@
 # ===================================
 # Eclipse
 # ===================================
-.project
-.classpath
-.settings/
+#.project
+#.classpath
+#.settings/
 .loadpath
 
 # ===================================
