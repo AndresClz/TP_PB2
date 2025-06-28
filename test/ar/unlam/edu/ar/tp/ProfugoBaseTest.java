@@ -33,4 +33,32 @@ public class ProfugoBaseTest {
         p.setNervioso(false);
         assertFalse(p.isNervioso());
     }
+    ///  Para subir el code coverage
+    @Test
+    public void queIsNerviosoDevuelvaTrue() {
+        ProfugoBase p = new ProfugoBase(20, 40, true);
+        assertTrue(p.isNervioso());
+    }
+
+    @Test
+    public void queSePuedaReducirInocenciaParcialmente() {
+        ProfugoBase p = new ProfugoBase(10, 50, true);
+        p.reducirInocencia(5);
+        assertEquals(5, p.getInocencia());
+    }
+
+    @Test
+    public void queSePuedaReducirHabilidadParcialmente() {
+        ProfugoBase p = new ProfugoBase(30, 50, true);
+        p.reducirHabilidad(20);
+        assertEquals(30, p.getHabilidad());
+    }
+
+    @Test
+    public void queSetNerviosoPermitaCambiarAVerdadero() {
+        ProfugoBase p = new ProfugoBase(30, 40, false);
+        p.setNervioso(true);
+        assertTrue(p.isNervioso());
+    }
+
 }
