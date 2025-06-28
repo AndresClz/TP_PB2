@@ -1,4 +1,4 @@
-package ar.unlam.edu.ar.tp.model;
+package ar.unlam.edu.ar.tp.model.profugo;
 
 public interface Profugo {
     int getInocencia();

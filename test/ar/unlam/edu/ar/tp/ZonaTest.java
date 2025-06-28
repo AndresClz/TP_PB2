@@ -1,8 +1,9 @@
 package ar.unlam.edu.ar.tp;
 import static org.junit.Assert.*;
 
-import ar.unlam.edu.ar.tp.model.Profugo;
-import ar.unlam.edu.ar.tp.model.ProfugoBase;
+import ar.unlam.edu.ar.tp.model.Zona;
+import ar.unlam.edu.ar.tp.model.profugo.Profugo;
+import ar.unlam.edu.ar.tp.model.profugo.ProfugoBase;
 import org.junit.Test;
 import java.util.List;
 
@@ -32,4 +33,24 @@ public class ZonaTest {
         zona.removerProfugo(p1);
         assertEquals(0, zona.getProfugos().size());
     }
+
+    @Test
+    public void queDevuelvaElNombreDeLaZona() {
+        Zona zona = new Zona("Gotham");
+        assertEquals("Gotham", zona.getNombre());
+    }
+
+    @Test
+    public void queNoFalleAlRemoverProfugoInexistente() {
+        Zona zona = new Zona("Ciudad Central");
+        Profugo p1 = new ProfugoBase(30, 50, true);
+        Profugo p2 = new ProfugoBase(40, 60, false);
+
+        zona.agregarProfugo(p1);
+        zona.removerProfugo(p2); // p2 no estaba
+
+        assertEquals(1, zona.getProfugos().size());
+        assertTrue(zona.getProfugos().contains(p1));
+    }
+
 }

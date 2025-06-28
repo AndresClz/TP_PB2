@@ -1,8 +1,7 @@
-package ar.unlam.edu.ar.tp;
+package ar.unlam.edu.ar.tp.profugo;
 import static org.junit.Assert.*;
 
-import ar.unlam.edu.ar.tp.model.Profugo;
-import ar.unlam.edu.ar.tp.model.ProfugoBase;
+import ar.unlam.edu.ar.tp.model.profugo.*;
 import org.junit.Test;
 
 public class ProfugoDecoradorTest {

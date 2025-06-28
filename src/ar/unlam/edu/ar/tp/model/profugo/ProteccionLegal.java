@@ -1,7 +1,4 @@
-package ar.unlam.edu.ar.tp;
-
-import ar.unlam.edu.ar.tp.model.Profugo;
-import ar.unlam.edu.ar.tp.model.ProfugoDecorador;
+package ar.unlam.edu.ar.tp.model.profugo;
 
 public class ProteccionLegal extends ProfugoDecorador {
     public ProteccionLegal(Profugo base) {

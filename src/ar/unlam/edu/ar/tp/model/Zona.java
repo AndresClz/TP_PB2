@@ -1,6 +1,6 @@
-package ar.unlam.edu.ar.tp;
+package ar.unlam.edu.ar.tp.model;
 
-import ar.unlam.edu.ar.tp.model.Profugo;
+import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 
 import java.util.ArrayList;
 import java.util.Collections;
