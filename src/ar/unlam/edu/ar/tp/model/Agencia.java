@@ -1,30 +1,48 @@
 package ar.unlam.edu.ar.tp.model;
 
+
+import java.util.*;
+
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 import ar.unlam.edu.ar.tp.model.cazador.Cazador;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 
 public class Agencia {
-	private final List<Cazador> cazadores;
-	private final List<Profugo> profugosCapturados;
+	private List<Map.Entry<Cazador, Profugo>> listaCazadores;
 	
 	public Agencia() {
-		this.cazadores = new ArrayList<>();
-		this.profugosCapturados = new ArrayList<>();
+		listaCazadores = new ArrayList<>();
+	}
+
+	public void registrarCazador(Cazador cazador) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<Cazador> getCazadores() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void registrarCaptura(Cazador cazador, Profugo profugo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<Profugo> getCapturados() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Profugo getMasHabilCapturado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Cazador getCazadorConMasCapturas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	public void agregarProfugo(Profugo p) {
-        this.profugosCapturados.add(p);
-    }
-	
-	public void agregarCazador(Cazador c) {
-        this.cazadores.add(c);
-    }
-	
-	public List<Profugo> getProfugosCapturados() {
-        return Collections.unmodifiableList(this.profugosCapturados);
-    }
 }
