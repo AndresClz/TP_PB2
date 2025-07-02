@@ -13,12 +13,22 @@ public abstract class CazadorDecorador implements Cazador {
 	}
 	
 	@Override
-	public int getTipoDeCazador() {
+	public char getTipoDeCazador() {
 		return base.getTipoDeCazador();
+	}
+	
+	@Override
+	public int getCantProfugosCapturados() {
+		return base.getCantProfugosCapturados();
 	}
 	
 	@Override
 	public void sumarExperiencia(int habilidadIntimidados, int cantidadCapturada) {
 		base.sumarExperiencia(habilidadIntimidados, cantidadCapturada);
+	}
+	
+	@Override
+	public void sumarCapturas(int cantidadCapturada) {
+		base.sumarCapturas(cantidadCapturada);
 	}
 }
