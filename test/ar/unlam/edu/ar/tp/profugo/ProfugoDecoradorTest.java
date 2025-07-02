@@ -26,4 +26,24 @@ public class ProfugoDecoradorTest {
         Profugo entrenado = new ProteccionLegal(p);
         assertEquals(40, entrenado.getInocencia());
     }
+
+    @Test
+    public void queProfugoEvolucioneConVariasCapasDeEntrenamiento() {
+        // Prófigo base: 30 de inocencia, 45 de habilidad, nervioso
+        Profugo p = new ProfugoBase(30, 45, true);
+
+        // Aplica artes marciales avanzadas: habilidad = 90
+        p = new ArtesMarcialesAvanzadas(p);
+
+        // Aplica entrenamiento elite: nervioso = false
+        p = new EntrenamientoElite(p);
+
+        // Aplica protección legal: inocencia mínima 40
+        p = new ProteccionLegal(p);
+
+        // Verificaciones
+        assertEquals(40, p.getInocencia()); // original era 30, ahora mínimo 40
+        assertEquals(90, p.getHabilidad()); // 45 * 2 = 90
+        assertFalse(p.isNervioso());        // gracias a entrenamiento elite
+    }
 }
