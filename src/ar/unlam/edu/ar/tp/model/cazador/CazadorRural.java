@@ -10,14 +10,7 @@ public class CazadorRural extends CazadorBase {
 	
 	@Override
 	public boolean puedeCapturar(Profugo p) {
-		boolean puedeCapturar = false; 
-		
-		if( this.getExperiencia() > p.getInocencia() && 
-			p.isNervioso() == true) {
-			puedeCapturar = true;
-		}
-		
-		return puedeCapturar;
+		return this.getExperiencia() > p.getInocencia() && p.isNervioso();
 	}
 	
 	@Override

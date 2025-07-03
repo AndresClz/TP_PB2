@@ -10,14 +10,7 @@ public class CazadorSigiloso extends CazadorBase {
 	
 	@Override
 	public boolean puedeCapturar(Profugo p) {
-		boolean puedeCapturar = false; 
-		
-		if( this.getExperiencia() > p.getInocencia() && 
-			p.getHabilidad() < 50) {
-			puedeCapturar = true;
-		}
-		
-		return puedeCapturar;
+		return this.getExperiencia() > p.getInocencia() && p.getHabilidad() < 50;
 	}
 	
 	@Override

@@ -26,7 +26,7 @@ public class CazadorBase implements Cazador {
 	}
 
 	public List<Profugo> getCapturados() {
-		return this.capturados;
+		return Collections.unmodifiableList(this.capturados);
 	}
 	
 	public int getCantidadCapturada() {
@@ -48,7 +48,7 @@ public class CazadorBase implements Cazador {
 	public void capturar(Zona zona, Agencia agencia) {
 		List<Profugo> aRemover = new ArrayList<>();
 		int cantidadCapturada = 0;
-		int habilidadMinima = 101; //Se pone en 101 para que siempre guarde el primero.
+		int habilidadMinima = Integer.MAX_VALUE;
 		
 		for( Profugo profugo : zona.getProfugos() ) {
 			
@@ -71,13 +71,10 @@ public class CazadorBase implements Cazador {
 		for(Profugo p : aRemover) {
 			zona.removerProfugo(p); }
 		
-		if( habilidadMinima < 101) {
-			this.sumarExperiencia(habilidadMinima, cantidadCapturada);
-		}
-		else {
+		if( habilidadMinima == Integer.MAX_VALUE ) {
 			habilidadMinima = 0;
-			this.sumarExperiencia(habilidadMinima, cantidadCapturada);
 		}
+		this.sumarExperiencia(habilidadMinima, cantidadCapturada);
 	}
 
 	public void intimidar(Profugo p) {

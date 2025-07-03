@@ -9,11 +9,11 @@ import ar.unlam.edu.ar.tp.model.cazador.Cazador;
 
 
 public class Agencia {
-	private List<Cazador> listaCazadores;
-	private List<Map.Entry<Cazador, Profugo>> listaCapturas;
+	private final Set<Cazador> listaCazadores;
+	private final List<Map.Entry<Cazador, Profugo>> listaCapturas;
 	
 	public Agencia() {
-		this.listaCazadores = new ArrayList<>();
+		this.listaCazadores = new TreeSet<>();
 		this.listaCapturas = new ArrayList<>();
 	}
 
@@ -21,8 +21,8 @@ public class Agencia {
 		this.listaCazadores.add(cazador);
 	}
 
-	public List<Cazador> getCazadores() {
-		return Collections.unmodifiableList(this.listaCazadores);
+	public Set<Cazador> getCazadores() {
+		return Collections.unmodifiableSet(this.listaCazadores);
 	}
 
 	public void registrarCaptura(Cazador cazador, Profugo profugo) {
