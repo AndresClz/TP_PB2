@@ -1,8 +1,5 @@
 package ar.unlam.edu.ar.tp.model.cazador;
 
-import java.util.List;
-
-import ar.unlam.edu.ar.tp.model.Zona;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 
 public class CazadorUrbano extends CazadorBase {
@@ -13,19 +10,19 @@ public class CazadorUrbano extends CazadorBase {
 	
 	@Override
 	public boolean puedeCapturar(Profugo p) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public void capturar(Zona zona) {
-		// TODO Auto-generated method stub
+		boolean sePuedeCapturar = false; 
 		
+		if( this.getExperiencia() > p.getInocencia() && 
+			p.isNervioso() == false ) {
+			sePuedeCapturar = true;
+		}
+		
+		return sePuedeCapturar;
 	}
 	
 	@Override
 	public void intimidar(Profugo p) {
-		// TODO Auto-generated method stub
-		
+		p.reducirInocencia(2);
+		p.setNervioso(false);
 	}
 }

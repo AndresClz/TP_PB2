@@ -9,40 +9,66 @@ import ar.unlam.edu.ar.tp.model.cazador.Cazador;
 
 
 public class Agencia {
-	private List<Map.Entry<Cazador, Profugo>> listaCazadores;
+	private List<Cazador> listaCazadores;
+	private List<Map.Entry<Cazador, Profugo>> listaCapturas;
 	
 	public Agencia() {
-		listaCazadores = new ArrayList<>();
+		this.listaCazadores = new ArrayList<>();
+		this.listaCapturas = new ArrayList<>();
 	}
 
 	public void registrarCazador(Cazador cazador) {
-		// TODO Auto-generated method stub
-		
+		this.listaCazadores.add(cazador);
 	}
 
 	public List<Cazador> getCazadores() {
-		// TODO Auto-generated method stub
-		return null;
+		return Collections.unmodifiableList(this.listaCazadores);
 	}
 
 	public void registrarCaptura(Cazador cazador, Profugo profugo) {
-		// TODO Auto-generated method stub
+		Map.Entry<Cazador, Profugo> parCaptura = new AbstractMap.SimpleEntry<>(cazador, profugo);
 		
+		this.listaCapturas.add(parCaptura);
 	}
 
 	public List<Profugo> getCapturados() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Profugo> profugos = new ArrayList<>();
+		
+		for(Map.Entry<Cazador, Profugo> captura : listaCapturas) {
+			profugos.add(captura.getValue());
+		}
+		
+		
+		return Collections.unmodifiableList(profugos);
 	}
 
 	public Profugo getMasHabilCapturado() {
-		// TODO Auto-generated method stub
-		return null;
+		Profugo masHabil = null;
+		int habilidadMax = 0;
+		
+		for(Profugo capturado : this.getCapturados()) {
+			
+			if(capturado.getHabilidad() >= habilidadMax) {
+				habilidadMax = capturado.getHabilidad();
+				masHabil = capturado;
+			}
+		}
+		
+		return masHabil;
 	}
 
 	public Cazador getCazadorConMasCapturas() {
-		// TODO Auto-generated method stub
-		return null;
+		Cazador conMasCapturas = null;
+		int mayorCantidad = 0;
+		
+		for(Cazador c : this.getCazadores()) {
+			if(c.getCantidadCapturada() >= mayorCantidad) {
+				mayorCantidad = c.getCantidadCapturada();
+				conMasCapturas = c;
+			}
+		}
+		
+		return conMasCapturas;
 	}
 	
 }

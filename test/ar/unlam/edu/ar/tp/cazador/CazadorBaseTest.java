@@ -2,9 +2,9 @@ package ar.unlam.edu.ar.tp.cazador;
 
 import static org.junit.Assert.*;
 
+import ar.unlam.edu.ar.tp.model.Agencia;
 import ar.unlam.edu.ar.tp.model.Zona;
 import ar.unlam.edu.ar.tp.model.cazador.Cazador;
-import ar.unlam.edu.ar.tp.model.cazador.CazadorBase;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorUrbano;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorRural;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorSigiloso;
@@ -48,20 +48,22 @@ public class CazadorBaseTest {
 
     @Test
     public void queCazadorCaptureYRemuevaDeZona() {
+    	Agencia agencia = new Agencia();
         Cazador cazador = new CazadorUrbano("Carlos", 70);
         Zona zona = new Zona("Ciudad Gótica");
         Profugo p = new ProfugoBase(60, 30, false);
 
         zona.agregarProfugo(p);
-        cazador.capturar(zona);
+        cazador.capturar(zona, agencia);
 
         assertEquals(0, zona.getProfugos().size());
-        assertEquals(1, cazador.getCapturados().size());
+        assertEquals(1, cazador.getCantidadCapturada());
         assertTrue(cazador.getCapturados().contains(p));
     }
     
     @Test
     public void queCazadorCaptureYObtengaExperienciaCorrectamente() {
+    	Agencia agencia = new Agencia();
         Cazador cazador = new CazadorUrbano("Mateo", 70);
         Zona zona = new Zona("Ciudad Urban");
         Profugo p1 = new ProfugoBase(60, 30, false); //Capturado
@@ -69,7 +71,7 @@ public class CazadorBaseTest {
 
         zona.agregarProfugo(p1);
         zona.agregarProfugo(p2);
-        cazador.capturar(zona);
+        cazador.capturar(zona, agencia);
 
         assertEquals(102, cazador.getExperiencia()); //70 + 30 + 2
     }
@@ -81,7 +83,7 @@ public class CazadorBaseTest {
 
         cazador.intimidar(p);
 
-        assertEquals(38, p.getInocencia()); // se reduce en 2
+        assertEquals(88, p.getInocencia()); // se reduce en 2
         assertFalse(p.isNervioso());        // urbano lo calma
     }
 }

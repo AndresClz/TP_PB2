@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 
 import ar.unlam.edu.ar.tp.model.Agencia;
+import ar.unlam.edu.ar.tp.model.Zona;
 import ar.unlam.edu.ar.tp.model.cazador.Cazador;
-import ar.unlam.edu.ar.tp.model.cazador.CazadorBase;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorRural;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorUrbano;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
@@ -27,11 +27,14 @@ public class AgenciaTest {
 	@Test
 	public void queSePuedaRegistrarCaptura() {
 		Agencia agencia = new Agencia();
+		Zona zona = new Zona("Ciudad Urban");
 		Cazador cazador = new CazadorUrbano("Ana", 70);
 		Profugo profugo = new ProfugoBase(30, 50, false);
+		
+		zona.agregarProfugo(profugo);
 
 		agencia.registrarCazador(cazador);
-		agencia.registrarCaptura(cazador, profugo);
+		cazador.capturar(zona, agencia);
 		
 		assertTrue(agencia.getCapturados().contains(profugo));
         assertTrue(cazador.getCapturados().contains(profugo));
