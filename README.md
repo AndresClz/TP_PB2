@@ -26,3 +26,42 @@ El proyecto está organizado en paquetes y clases principales para mantener un d
 - Completar las firmas de métodos y documentar su comportamiento esperado.
 - Definir casos de prueba iniciales (tests rojos) para cada clase clave.
 - Implementar lógica paso a paso siguiendo el ciclo TDD (Rojo → Verde → Refactor).
+## Verificación de Requerimientos en los Tests
+
+La estructura de los tests está organizada por unidad de responsabilidad y no por requerimiento. A continuación se detalla qué archivos de prueba cubren cada uno de los requerimientos funcionales principales:
+
+---
+
+### **Parte I: Proceso de Captura**
+
+> **Requerimiento:** *Hacer que un cazador realice el proceso de captura en una zona, capturando los prófugos que pueda e intimidando al resto. La zona debe quedar sin los prófugos capturados.*
+
+Para verificar este flujo, revise el archivo:
+*   **`test/ar/unlam/edu/ar/tp/cazador/CazadorTest.java`**
+
+Este archivo contiene los tests que simulan la operación completa a través del `ServicioDeCaptura`, asegurando que los cazadores capturen, intimiden y que la zona se actualice correctamente. Tests clave como `queCazadorCaptureYRemuevaDeZona` y `queCazadorCaptureYObtengaExperienciaCorrectamente` validan este comportamiento.
+
+---
+
+### **Parte II: Evolución de Prófugos**
+
+> **Requerimiento:** *Los Prófugos pueden entrenarse para mejorar sus habilidades (Artes marciales, Entrenamiento de elite, Protección legal) y acumular estas mejoras.*
+
+Para verificar la correcta evolución de los prófugos, revise el archivo:
+*   **`test/ar/unlam/edu/ar/tp/profugo/ProfugoDecoradorTest.java`**
+
+Este archivo se dedica a probar el patrón Decorator. Contiene pruebas que validan cada habilidad por separado y, lo más importante, tests que combinan múltiples "capas" de entrenamiento sobre un mismo prófugo para asegurar que las habilidades se acumulan correctamente.
+
+---
+
+### **Parte III: Reportes de la Agencia**
+
+> **Requerimiento:** *Obtener reportes sobre todos los prófugos capturados, el prófugo más hábil y el cazador con más capturas.*
+
+Para verificar que los reportes de la agencia funcionan, revise el archivo:
+*   **`test/ar/unlam/edu/ar/tp/AgenciaTest.java`**
+
+Este archivo contiene tests específicos para cada método de reporte:
+-   `queSePuedaRegistrarCaptura` (verifica la lista general de capturados).
+-   `queDevuelvaElProfugoMasHabilCapturado`.
+-   `queDevuelvaCazadorConMasCapturasTrasOperacionSecuencialConIntimidacion`.
