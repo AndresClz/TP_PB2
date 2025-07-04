@@ -1,5 +1,6 @@
 package ar.unlam.edu.ar.tp.model;
 
+import ar.unlam.edu.ar.tp.model.exception.ProfugoNoEncontradoException;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ public class Zona {
         this.profugos.add(p);
     }
 
-    public void removerProfugo(Profugo p) {
-        this.profugos.remove(p);
+    public void removerProfugo(Profugo p) throws ProfugoNoEncontradoException {
+        if (!this.profugos.remove(p)) {
+            throw new ProfugoNoEncontradoException("El profugo no pudo ser removido porque no se encontró en la zona '" + this.nombre + "'.");
+        }
     }
 
     public List<Profugo> getProfugos() {

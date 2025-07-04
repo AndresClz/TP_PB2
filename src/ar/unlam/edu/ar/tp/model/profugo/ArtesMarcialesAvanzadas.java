@@ -10,4 +10,3 @@ public class ArtesMarcialesAvanzadas extends ProfugoDecorador {
         return Math.min(100, base.getHabilidad() * 2);
     }
 }
-

@@ -1,9 +1,6 @@
 package ar.unlam.edu.ar.tp.model.cazador;
 
 import java.util.List;
-
-import ar.unlam.edu.ar.tp.model.Agencia;
-import ar.unlam.edu.ar.tp.model.Zona;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 
 public interface Cazador {
@@ -14,6 +11,6 @@ public interface Cazador {
 
 	void sumarExperiencia(int habilidadIntimidados, int cantidadCapturada);
 	boolean puedeCapturar(Profugo p);
-	void capturar(Zona zona, Agencia agencia);
 	void intimidar(Profugo p);
+	void agregarCapturado(Profugo capturado);
 }
