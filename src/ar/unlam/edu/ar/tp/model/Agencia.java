@@ -3,6 +3,7 @@ package ar.unlam.edu.ar.tp.model;
 import java.util.*;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 import ar.unlam.edu.ar.tp.model.cazador.Cazador;
+import ar.unlam.edu.ar.tp.model.exception.CazadorYaRegistradoException;
 
 public class Agencia {
 	private final Set<Cazador> listaCazadores;
@@ -13,8 +14,10 @@ public class Agencia {
 		this.listaCapturas = new ArrayList<>();
 	}
 
-	public void registrarCazador(Cazador cazador) {
-		this.listaCazadores.add(cazador);
+	public void registrarCazador(Cazador cazador) throws CazadorYaRegistradoException {
+		if (!this.listaCazadores.add(cazador)) {
+			throw new CazadorYaRegistradoException("El cazador " + cazador.getNombre() + " ya se encuentra registrado en la agencia.");
+		}
 	}
 
 	public Set<Cazador> getCazadores() {
