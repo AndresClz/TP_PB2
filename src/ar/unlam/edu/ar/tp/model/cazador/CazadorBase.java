@@ -6,9 +6,9 @@ import ar.unlam.edu.ar.tp.model.estrategia.EstrategiaDeCaptura;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 
 public class CazadorBase implements Cazador {
-	private String nombre;
+	final private String nombre;
 	private int experiencia;
-	private List<Profugo> capturados;
+	final private List<Profugo> capturados;
 
 	private final EstrategiaDeCaptura estrategia;
 
