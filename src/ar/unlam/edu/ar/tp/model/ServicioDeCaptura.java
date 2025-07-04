@@ -1,6 +1,7 @@
 package ar.unlam.edu.ar.tp.model;
 
 import ar.unlam.edu.ar.tp.model.cazador.Cazador;
+import ar.unlam.edu.ar.tp.model.exception.ProfugoNoEncontradoException;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class ServicioDeCaptura {
 
-    public void procesarCapturas(Cazador cazador, Zona zona, Agencia agencia) {
+    public void procesarCapturas(Cazador cazador, Zona zona, Agencia agencia) throws ProfugoNoEncontradoException {
         int capturadosEnOperacion = 0;
         int minHabilidadIntimidados = Integer.MAX_VALUE;
 
@@ -44,7 +45,7 @@ public class ServicioDeCaptura {
         return new ArrayList<>(zona.getProfugos());
     }
 
-    private void removerDeZona(Zona zona, Profugo p) {
+    private void removerDeZona(Zona zona, Profugo p) throws ProfugoNoEncontradoException {
         zona.removerProfugo(p);
     }
 
