@@ -14,6 +14,6 @@ public interface Cazador {
 
 	void sumarExperiencia(int habilidadIntimidados, int cantidadCapturada);
 	boolean puedeCapturar(Profugo p);
-	void capturar(Zona zona, Agencia agencia);
 	void intimidar(Profugo p);
+	void agregarCapturado(Profugo capturado);
 }
