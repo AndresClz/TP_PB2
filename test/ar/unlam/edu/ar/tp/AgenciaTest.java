@@ -9,6 +9,8 @@ import ar.unlam.edu.ar.tp.model.Zona;
 import ar.unlam.edu.ar.tp.model.cazador.Cazador;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorRural;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorUrbano;
+import ar.unlam.edu.ar.tp.model.exception.CazadorYaRegistradoException;
+import ar.unlam.edu.ar.tp.model.exception.ProfugoNoEncontradoException;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 import ar.unlam.edu.ar.tp.model.profugo.ProfugoBase;
 
@@ -27,7 +29,7 @@ public class AgenciaTest {
 	}
 
 	@Test
-	public void queSePuedaRegistrarUnCazador() {
+	public void queSePuedaRegistrarUnCazador() throws CazadorYaRegistradoException {
 		Cazador cazador = new CazadorUrbano("Juan", 50);
 		
 		agencia.registrarCazador(cazador);
@@ -36,7 +38,7 @@ public class AgenciaTest {
 	}
 	
 	@Test
-	public void queSePuedaRegistrarCaptura() {
+	public void queSePuedaRegistrarCaptura() throws CazadorYaRegistradoException, ProfugoNoEncontradoException {
 		Zona zona = new Zona("Ciudad Urban");
 		Cazador cazador = new CazadorUrbano("Ana", 70);
 		Profugo profugo = new ProfugoBase(50, 30, false);
@@ -51,7 +53,7 @@ public class AgenciaTest {
 	}
 	
 	@Test
-    public void queDevuelvaElProfugoMasHabilCapturado() {
+    public void queDevuelvaElProfugoMasHabilCapturado() throws CazadorYaRegistradoException{
         Cazador cazador = new CazadorUrbano("Pedro", 60);
         Profugo p1 = new ProfugoBase(40, 20, false);
         Profugo p2 = new ProfugoBase(80, 30, false);
@@ -66,7 +68,7 @@ public class AgenciaTest {
     }
 
     @Test
-    public void queDevuelvaCazadorConMasCapturasTrasOperacionSecuencialConIntimidacion() {
+    public void queDevuelvaCazadorConMasCapturasTrasOperacionSecuencialConIntimidacion() throws CazadorYaRegistradoException, ProfugoNoEncontradoException {
         Zona zona = new Zona("Multi-zona");
         Cazador cazador1 = new CazadorUrbano("Laura", 80);
         Cazador cazador2 = new CazadorRural("Carlos", 80);
@@ -88,5 +90,26 @@ public class AgenciaTest {
         // --- Verificación ---
         // cazador1 debe tener 1 captura, cazador2 debe tener 2
         assertEquals(cazador1, agencia.getCazadorConMasCapturas());
+    }
+
+    @Test(expected = CazadorYaRegistradoException.class)
+    public void queNoSePuedaRegistrarCazadorDuplicado() throws CazadorYaRegistradoException {
+        Cazador cazador = new CazadorUrbano("Juan", 50);
+
+        agencia.registrarCazador(cazador);
+        agencia.registrarCazador(cazador); // Lanza la excepción
+    }
+
+    @Test
+    public void queSePuedaManejarLaExcepcionAlRegistrarDuplicado() {
+        Cazador cazador = new CazadorUrbano("Juan", 50);
+
+        try {
+            agencia.registrarCazador(cazador);
+            agencia.registrarCazador(cazador);
+            fail("Se esperaba que se lanzara CazadorYaRegistradoException, pero no ocurrió.");
+        } catch (CazadorYaRegistradoException e) {
+            assertEquals("El cazador Juan ya se encuentra registrado en la agencia.", e.getMessage());
+        }
     }
 }

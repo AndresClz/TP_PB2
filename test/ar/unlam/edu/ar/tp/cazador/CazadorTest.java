@@ -9,6 +9,7 @@ import ar.unlam.edu.ar.tp.model.cazador.Cazador;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorUrbano;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorRural;
 import ar.unlam.edu.ar.tp.model.cazador.CazadorSigiloso;
+import ar.unlam.edu.ar.tp.model.exception.ProfugoNoEncontradoException;
 import ar.unlam.edu.ar.tp.model.profugo.Profugo;
 import ar.unlam.edu.ar.tp.model.profugo.ProfugoBase;
 
@@ -61,7 +62,7 @@ public class CazadorTest {
     }
 
     @Test
-    public void queCazadorCaptureYRemuevaDeZona() {
+    public void queCazadorCaptureYRemuevaDeZona() throws ProfugoNoEncontradoException {
         Cazador cazador = new CazadorUrbano("Carlos", 70);
         Profugo p = new ProfugoBase(60, 30, false);
 
@@ -74,7 +75,7 @@ public class CazadorTest {
     }
     
     @Test
-    public void queCazadorCaptureYObtengaExperienciaCorrectamente() {
+    public void queCazadorCaptureYObtengaExperienciaCorrectamente() throws ProfugoNoEncontradoException {
         Cazador cazador = new CazadorUrbano("Mateo", 70);
         Profugo p1 = new ProfugoBase(60, 30, false); //Capturado
         Profugo p2 = new ProfugoBase(60, 30, true); //Intimidado
@@ -87,7 +88,7 @@ public class CazadorTest {
     }
 
     @Test
-    public void queSeIntimideProfugoCuandoNoPuedeSerCapturado() {
+    public void queSeIntimideProfugoCuandoNoPuedeSerCapturado() throws ProfugoNoEncontradoException {
         Cazador cazador = new CazadorUrbano("Lucía", 70);
         Profugo p = new ProfugoBase(90, 40, true); // no cumple regla urbana (es nervioso)
 
@@ -104,7 +105,7 @@ public class CazadorTest {
     }
 
     @Test
-    public void queLaCapturaFalleSiExperienciaEsIgualAInocencia() {
+    public void queLaCapturaFalleSiExperienciaEsIgualAInocencia() throws ProfugoNoEncontradoException {
         Cazador cazador = new CazadorUrbano("Lucía", 50);
         Profugo profugo = new ProfugoBase(50, 40, false); // exp (50) == inocencia (50)
 
@@ -116,7 +117,7 @@ public class CazadorTest {
     }
 
     @Test
-    public void queNoPaseNadaSiLaZonaEstaVacia() {
+    public void queNoPaseNadaSiLaZonaEstaVacia() throws ProfugoNoEncontradoException {
         Cazador cazador = new CazadorUrbano("Lucía", 70);
         int experienciaInicial = cazador.getExperiencia();
 
@@ -127,7 +128,7 @@ public class CazadorTest {
     }
 
     @Test
-    public void queSePuedanCapturarVariosProfugosEnUnaOperacion() {
+    public void queSePuedanCapturarVariosProfugosEnUnaOperacion() throws ProfugoNoEncontradoException {
         Cazador cazador = new CazadorUrbano("Rico", 80);
         Profugo p1 = new ProfugoBase(30, 40, false);
         Profugo p2 = new ProfugoBase(50, 60, false);
@@ -141,7 +142,7 @@ public class CazadorTest {
     }
 
     @Test
-    public void queSeCalculeExperienciaCorrectamenteConMultiplesIntimidados() {
+    public void queSeCalculeExperienciaCorrectamenteConMultiplesIntimidados() throws ProfugoNoEncontradoException {
         Cazador cazador = new CazadorSigiloso("Fantasma", 50); // No puede capturar a ninguno
         Profugo p1 = new ProfugoBase(60, 30, false); // Habilidad 60
         Profugo p2 = new ProfugoBase(25, 80, false); // Habilidad 25 (la menor)
@@ -156,7 +157,7 @@ public class CazadorTest {
     }
 
     @Test
-    public void queLaCapturaFalleSiLaExperienciaEsInsuficiente() {
+    public void queLaCapturaFalleSiLaExperienciaEsInsuficiente() throws ProfugoNoEncontradoException {
         Cazador cazador = new CazadorUrbano("Novato", 30);
         Profugo profugo = new ProfugoBase(50, 40, false); // exp (30) < inocencia (40)
 
